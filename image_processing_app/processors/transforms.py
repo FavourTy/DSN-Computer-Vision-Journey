@@ -6,12 +6,11 @@ def resize(img):
     resized = cv.resize(rgb, (700, 500))
     return resized
 def translation(img):
-    #rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    rows, cols = img.shape[:2]
-    pt1 = np.float32([[500,6000],[500, 1000], [8000, 6000]])
-    pt2 = np.float32([[500, 4500], [3000, 1500], [5000, 6000]])
-    M = cv.getAffineTransform(pt1, pt2)
-    dst = cv.warpAffine(img, M, (cols, rows))
+    rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+    rows, cols = rgb.shape[:2]
+    
+    M = np.float32([[1, 0, 100],[0,1,50]])
+    dst = cv.warpAffine(rgb, M, (cols, rows))
     final = cv.resize (dst, (700, 500))
     return final
 
