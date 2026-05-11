@@ -42,7 +42,7 @@ elif category == "Thresholding":
     technique = st.sidebar.selectbox("Technique", [
         "Zero",
         "Binary",
-        "Binary Inverse"
+        "Binary Inverse",
         "Otsu",
         "Adaptive Mean",
         "Adaptive Gaussian"
