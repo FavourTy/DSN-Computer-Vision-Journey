@@ -5,6 +5,7 @@ from PIL import Image
 from processors.edges import laplacian, sobel, canny
 from processors.filters import blur, medianBlur, gaussianBlur, kernel
 from processors.thresholding import binary, binaryInverse, otsu, adaptiveGaussian, adaptiveMean, zero
+from processors.morphology import opening
 
 st.title("Image Processing App")
 
@@ -16,6 +17,7 @@ category = st.sidebar.selectbox("Category", [
     "Filters",
     "Transforms",
     "Thresholding"
+    "Morphology"
 ])
 
 # Step 2 - pick technique under that category
@@ -47,7 +49,10 @@ elif category == "Thresholding":
         "Adaptive Mean",
         "Adaptive Gaussian"
     ])
-
+elif category =="Morphology":
+    technique = st.sidebar.selectbox("Techique", [
+        "Opening"
+    ])
 if uploaded:
     file_bytes = np.asarray(bytearray(uploaded.read()), dtype=np.uint8)
     img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
@@ -87,4 +92,8 @@ if uploaded:
     elif technique == "Adaptive Gaussian":
         result = adaptiveGaussian(img)
     
+    #Morphology
+    if technique == "Opening":
+        result = opening(img)
+
     col2.image(result, caption=technique)
