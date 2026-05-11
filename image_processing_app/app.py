@@ -7,6 +7,7 @@ from processors.filters import blur, medianBlur, gaussianBlur, kernel
 from processors.thresholding import binary, binaryInverse, otsu, adaptiveGaussian, adaptiveMean, zero
 from processors.morphology import opening
 from processors.segmentation import watershedSegment
+from processors.transforms import resize, rotation, translation, shear, perspective_transform, affine_transform
 
 st.title("Image Processing App")
 
@@ -38,6 +39,9 @@ elif category == "Filters":
     ])
 elif category == "Transforms":
     technique = st.sidebar.selectbox("Technique", [
+        "Resize",
+        "Translation",
+        "Shear",
         "Rotation",
         "Perspective Transform",
         "Affine Transform",
@@ -108,5 +112,27 @@ if uploaded:
     #Segmentation
     if technique == "Watershed":
         result = watershedSegment(img)
+
+    #Transforms
+    if technique == "Rotation":
+        angle = st.sidebar.slider("Angle", 0, 360, 45)
+    if technique == "Shear":
+        shear_factor = st.sidebar.slider("Shear factor", 0.1, 1.0, 0.3)
+    if technique == "Translation":
+        shift_x = st.sidebar.slider("Shift X", 0, 300, 100)
+        shift_y = st.sidebar.slider("Shift Y", 0, 300, 50)
+
+    if technique == "Resize":
+        result = resize(img)
+    elif technique == "Translation":
+        result = translation(img, shift_x, shift_y)
+    elif technique == "Shear":
+        result = shear(img, shear_factor)
+    elif technique == "Rotation":
+        result = rotation(img, angle)
+    elif technique == "Perspective Transform":
+        result = perspective_transform(img)
+    elif technique == "Affine Transform":
+        result = affine_transform(img)
 
     col2.image(result, caption=technique)
