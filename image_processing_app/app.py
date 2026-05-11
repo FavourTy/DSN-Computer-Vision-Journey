@@ -75,12 +75,15 @@ if uploaded:
         result = laplacian(img)
   
     #Filters
+    if technique in ["Gaussian Blur", "Median Blur", "Box Blur"]:
+        k = st.sidebar.slider("Blur strength", 1, 51, 15, step=2)
+
     if technique == "Gaussian Blur":
-        result = gaussianBlur(img)
+        result = gaussianBlur(img, k)
     elif technique == "Median Blur":
-        result = medianBlur(img)
+        result = medianBlur(img, k)
     elif technique == "Box Blur":
-        result = blur(img)
+        result = blur(img, k)
     elif technique == "Custom Kernel":
         result = kernel(img)
     
