@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 from processors.edges import laplacian, sobel, canny
-
+from processors.filters import blur, medianBlur, gaussianBlur, kernel
 st.title("Image Processing App")
 
 uploaded = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
@@ -50,5 +50,16 @@ if uploaded:
         result = sobel(img)
     elif technique == "Laplacian":
         result = laplacian(img)
-
+  
+    #Filters
+    if technique == "Gaussian Blur":
+        result = gaussianBlur(img)
+    elif technique == "Median Blur":
+        result = medianBlur(img)
+    elif technique == "Box Blur":
+        result = medianBlur(img)
+    elif technique == "Custom Kernel":
+        result = kernel(img)
+          
+    
     col2.image(result, caption=technique)

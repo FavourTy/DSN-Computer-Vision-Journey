@@ -14,3 +14,5 @@ def translation(img):
     final = cv.resize (dst, (700, 500))
     return final
 
+
+
