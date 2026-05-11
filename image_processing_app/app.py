@@ -6,6 +6,7 @@ from processors.edges import laplacian, sobel, canny
 from processors.filters import blur, medianBlur, gaussianBlur, kernel
 from processors.thresholding import binary, binaryInverse, otsu, adaptiveGaussian, adaptiveMean, zero
 from processors.morphology import opening
+from processors.segmentation import watershedSegment
 
 st.title("Image Processing App")
 
@@ -18,6 +19,7 @@ category = st.sidebar.selectbox("Category", [
     "Transforms",
     "Thresholding"
     "Morphology"
+    "Segmentation"
 ])
 
 # Step 2 - pick technique under that category
@@ -52,6 +54,10 @@ elif category == "Thresholding":
 elif category =="Morphology":
     technique = st.sidebar.selectbox("Techique", [
         "Opening"
+    ])
+elif category == "Segmentation":
+    technique = st.sidebar.selectbox("Technique", [
+        "Watershed"
     ])
 if uploaded:
     file_bytes = np.asarray(bytearray(uploaded.read()), dtype=np.uint8)
@@ -95,5 +101,9 @@ if uploaded:
     #Morphology
     if technique == "Opening":
         result = opening(img)
+
+    #Segmentation
+    if technique == "Watershed":
+        result = watershedSegment(img)
 
     col2.image(result, caption=technique)
