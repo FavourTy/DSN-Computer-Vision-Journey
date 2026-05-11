@@ -18,8 +18,8 @@ category = st.sidebar.selectbox("Category", [
     "Edges",
     "Filters",
     "Transforms",
-    "Thresholding"
-    "Morphology"
+    "Thresholding",
+    "Morphology",
     "Segmentation"
 ])
 
