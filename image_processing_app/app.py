@@ -4,6 +4,8 @@ import streamlit as st
 from PIL import Image
 from processors.edges import laplacian, sobel, canny
 from processors.filters import blur, medianBlur, gaussianBlur, kernel
+from processors.thresholding import binary, binaryInverse, otsu, adaptiveGaussian, adaptiveMean, zero
+
 st.title("Image Processing App")
 
 uploaded = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
@@ -13,6 +15,7 @@ category = st.sidebar.selectbox("Category", [
     "Edges",
     "Filters",
     "Transforms",
+    "Thresholding"
 ])
 
 # Step 2 - pick technique under that category
@@ -34,6 +37,15 @@ elif category == "Transforms":
         "Rotation",
         "Perspective Transform",
         "Affine Transform",
+    ])
+elif category == "Thresholding":
+    technique = st.sidebar.selectbox("Technique", [
+        "Zero",
+        "Binary",
+        "Binary Inverse"
+        "Otsu",
+        "Adaptive Mean",
+        "Adaptive Gaussian"
     ])
 
 if uploaded:
@@ -57,9 +69,22 @@ if uploaded:
     elif technique == "Median Blur":
         result = medianBlur(img)
     elif technique == "Box Blur":
-        result = medianBlur(img)
+        result = blur(img)
     elif technique == "Custom Kernel":
         result = kernel(img)
-          
+    
+    #Thresholding
+    if technique == "Zero":
+        result = zero(img)
+    elif technique == "Binary":
+        result = binary(img)
+    elif technique == "Binary Inverse":
+        result = binaryInverse(img)
+    elif technique == "Otsu":
+        result = otsu(img)
+    elif technique == "Adaptive Mean":
+        result = adaptiveMean(img)
+    elif technique == "Adaptive Gaussian":
+        result = adaptiveGaussian(img)
     
     col2.image(result, caption=technique)
