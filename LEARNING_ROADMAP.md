@@ -12,8 +12,8 @@ Check items off as you go. Each phase lists *why it matters*, *what to learn*,
 ## Progress Snapshot
 
 - [x] Phase 0 — Python Basics
-- [ ] Phase 1 — Advanced Python (OOP)
-- [ ] Phase 2 — Data Structures & Algorithms
+- [ ] Phase 1 — Advanced Python (OOP) - done
+- [ ] Phase 2 — Data Structures & Algorithms - in progress
 - [ ] Phase 3 — Python for Data (NumPy / Pandas / Matplotlib)
 - [ ] Phase 4 — Core Machine Learning
 - [ ] Phase 5 — Deep Learning Foundations
