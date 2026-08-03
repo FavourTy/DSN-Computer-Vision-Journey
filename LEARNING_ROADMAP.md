@@ -199,3 +199,4 @@ in your [README](./README.md).
 - **Coursera: Mathematics for Machine Learning** — already completed, revisit Phase 4 topics as needed
 - LeetCode / HackerRank — DSA practice
 - PyTorch official tutorials — once Phase 5 begins
+#TOMORROW BEGIN DSA AND PYTHON FOR DATA
